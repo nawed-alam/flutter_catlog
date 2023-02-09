@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catlog/Login.dart';
-
+import 'package:flutter_catlog/pages/login_page.dart';
+import 'package:flutter_catlog/utils/routes.dart';
+import 'pages/home_page.dart';
 void main() {
   runApp(MyApp());
 }
@@ -11,27 +12,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text("Catlog App"),
-      //   ), 
-      //   body: Center(
-      //     child: Container(
-      //       child: Text("Welcome to first app!"),
-      //     ),
-      //   ),
-      //   drawer: Drawer(),
-      // ),
+    //  home:HomePage(),
       // themeMode: ThemeMode.dark,
       // darkTheme: ThemeData(
       //   brightness: Brightness.dark,
       // ),
+     // debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      routes: {
-        "/":(context)=> LoginPage(),
-      },
+      initialRoute: "/",
+     routes: {
+      "/":(context) => LoginPage(),
+      MyRoutes.homeRoute:(context) => HomePage(),
+       MyRoutes.loginRoute:(context) => LoginPage(),
+     },
     );
   }
 }
