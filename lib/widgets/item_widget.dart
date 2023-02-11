@@ -7,6 +7,7 @@ final Item item;
 
   @override
   Widget build(BuildContext context) {
+   // final dummyList =List.generate(50,(index)=>CatlogModel.items[0]);
     return Card(
       child: ListTile(
         leading: Image.network(item.image),
