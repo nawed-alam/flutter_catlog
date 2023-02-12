@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     loadData();
   }
   loadData()async{
+    await Future.delayed(Duration(seconds: 2));
 final catlogjson = await rootBundle.loadString("assests/files/catlog.json");
 final decodedata= jsonDecode(catlogjson);
 var productdata=decodedata["products"];
@@ -40,12 +41,15 @@ setState(() {
         ), 
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
+          child:(CatlogModel.items != null && CatlogModel.items.isNotEmpty)? ListView.builder(
           itemCount: CatlogModel.items.length,
           itemBuilder: (context, index){
             return ItemWidget(item: CatlogModel.items[index],);
           },
-          ),
+          ):Center(
+            child: CircularProgressIndicator(color: Colors.black,),
+            
+          )
         ),
         drawer: MyDrawer(),
       );
