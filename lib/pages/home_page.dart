@@ -41,12 +41,25 @@ setState(() {
         ), 
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child:(CatlogModel.items != null && CatlogModel.items.isNotEmpty)? ListView.builder(
-          itemCount: CatlogModel.items.length,
-          itemBuilder: (context, index){
-            return ItemWidget(item: CatlogModel.items[index],);
-          },
-          ):Center(
+          child:(CatlogModel.items != null && CatlogModel.items.isNotEmpty)? GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
+              crossAxisCount: 2,
+              ),
+             itemBuilder: (context,index){
+              final item=CatlogModel.items[index];
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: GridTile(
+                  header: Text(item.name),
+                  footer: Text(item.price.toString()),
+                  child: Image.network(item.image)
+                  ));
+             },
+             itemCount: CatlogModel.items.length,
+             ):Center(
             child: CircularProgressIndicator(color: Colors.black,),
             
           )
